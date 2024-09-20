@@ -14,12 +14,12 @@ class CircleApp:
         self.hitColors = ['DarkOrange1', 'OliveDrab1', 'Firebrick1']
         self.missColors = ['MediumTurquoise', 'Magenta2', 'Dodger Blue']
 
-        '''window'''
+        #window
         self.window = window
         #self.window.resizeable(False,False)
         self.window.wm_title('Monte Carlo Simulation')
 
-        '''widgets'''
+        #widgets
         self.dartboard = tk.Canvas(window, width=300, height=300, bg="khaki")
         self.draw_circle()
         self.title = tk.Label(self.window, text="Monte Carlo Simulation")
@@ -35,18 +35,18 @@ class CircleApp:
         self.hitColorLabel = tk.Label(self.window, text='Hit Color:')
         self.missColorLabel = tk.Label(self.window, text='Miss Color:')
           
-        '''positioning'''
+        #positioning
         self.title.grid(row=0, column=1, pady=10)
         self.dartboard.grid(row=1, column=1, rowspan=3, padx=10, pady=10)
 
-        '''left side'''
+        #left side
         self.sliderLabel.grid(row=1, column=0, pady=10, padx=10, sticky='e')
         self.dartCount.grid(row=2, column=0, pady=10, padx=10, sticky='n')
 
         self.runSimButton.grid(row=3, column=0, pady=10, sticky='n')
         self.clearBoardButton.grid(row=3,column=0,pady=10)
 
-        '''right side'''
+        #right side
         self.piValueLabel.grid(row=1, column=2, pady=10, padx=10, sticky='n')
         self.piValueEntry.grid(row=1, column=2, pady=10, padx=10, sticky='w')
         self.animatedCheck.grid(row=2, column=2, pady=10, padx=10, sticky='n')
@@ -58,9 +58,8 @@ class CircleApp:
         self.missColorLabel.grid(row=3, column=2, pady=10, sticky='n')
         self.missColor.grid(row=3, column=2, pady=20)
         self.missColor.set(value='MediumTurquoise')
-
-    '''Handles the button press and runs the simulation.''' 
     def runSim(self):
+        '''Handles the button press and runs the simulation.''' 
         self.total = 0
         self.yesCounter = 0
         self.dartNumber = self.dartCount.get()
@@ -115,8 +114,8 @@ class CircleApp:
                 self.piValueEntry.insert(0, f"{self.piValue:.5f}")
                 self.piValueEntry.config(state="readonly")
    
-    '''Handles the button press and resets the board and values to 0.'''
     def clearBoard(self):
+        '''Handles the button press and resets the board and values to 0.'''
         self.dartboard.delete('all')
         self.piValue = 0
 
@@ -126,8 +125,8 @@ class CircleApp:
         self.piValueEntry.insert(0, f"{self.piValue}")
         self.piValueEntry.config(state="readonly")
 
-    '''Draws the circle and axes.'''
     def draw_circle(self):
+         '''Draws the circle and axes.'''
         x0 = self.midpoint - self.circleRadius
         y0 = self.midpoint - self.circleRadius
         x1 = self.midpoint + self.circleRadius
@@ -137,8 +136,8 @@ class CircleApp:
         self.dartboard.create_line(0,150,300,150, fill='linen')
         self.dartboard.create_line(150,0,150,300, fill='linen')
 
-    '''Checks if a point at the given coordinates is inside of the circle.'''
     def isInCircle(self, x, y):
+            '''Checks if a point at the given coordinates is inside of the circle.'''
         #if distance between point and center is less than radius then it is within the circle
         self.distance = math.sqrt((x - self.midpoint)**2 + (y - self.midpoint)**2)
         if self.distance <= self.circleRadius:
